@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalQuickAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b890cca724df95a2a861ea72923d0a905ff66dba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4504cd14d09f8733cf4c6378a168813f96c0a6fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalQuickAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalQuickAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
