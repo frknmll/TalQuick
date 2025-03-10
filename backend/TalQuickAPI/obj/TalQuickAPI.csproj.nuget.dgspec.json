@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gslif\\TalQuick\\backend\\TalQuickAPI\\TalQuickAPI.csproj": {}
+    "C:\\Users\\gslif\\TalQuick\\backend\\talquickapi\\TalQuickAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gslif\\TalQuick\\backend\\TalQuickAPI\\TalQuickAPI.csproj": {
+    "C:\\Users\\gslif\\TalQuick\\backend\\talquickapi\\TalQuickAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gslif\\TalQuick\\backend\\TalQuickAPI\\TalQuickAPI.csproj",
+        "projectUniqueName": "C:\\Users\\gslif\\TalQuick\\backend\\talquickapi\\TalQuickAPI.csproj",
         "projectName": "TalQuickAPI",
-        "projectPath": "C:\\Users\\gslif\\TalQuick\\backend\\TalQuickAPI\\TalQuickAPI.csproj",
+        "projectPath": "C:\\Users\\gslif\\TalQuick\\backend\\talquickapi\\TalQuickAPI.csproj",
         "packagesPath": "C:\\Users\\gslif\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gslif\\TalQuick\\backend\\TalQuickAPI\\obj\\",
+        "outputPath": "C:\\Users\\gslif\\TalQuick\\backend\\talquickapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gslif\\AppData\\Roaming\\NuGet\\NuGet.Config"

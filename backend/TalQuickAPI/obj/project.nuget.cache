@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BKsBvKyCjeo=",
+  "dgSpecHash": "5D6D4Xb826g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\gslif\\TalQuick\\backend\\TalQuickAPI\\TalQuickAPI.csproj",
+  "projectFilePath": "C:\\Users\\gslif\\TalQuick\\backend\\talquickapi\\TalQuickAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gslif\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\gslif\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.2\\microsoft.aspnetcore.authentication.jwtbearer.8.0.2.nupkg.sha512",
