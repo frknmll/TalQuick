@@ -1,26 +1,25 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login"); // Çıkış yaptıktan sonra login sayfasına yönlendir
-  };
 
   return (
-    <nav>
-      <h2>TalQuick</h2>
-      {user ? (
-        <>
-          <span>Hoş geldin, {user.username}!</span>
-          <button onClick={handleLogout}>Çıkış Yap</button>
-        </>
-      ) : (
-        <button onClick={() => navigate("/login")}>Giriş Yap</button>
-      )}
+    <nav style={{ display: "flex", justifyContent: "space-between", padding: "10px", background: "#007bff", color: "white" }}>
+      <div>
+        <Link to="/dashboard" style={{ color: "white", marginRight: "10px" }}>Dashboard</Link>
+        <Link to="/chat" style={{ color: "white", marginRight: "10px" }}>Sohbet</Link> {/* ✅ Sohbet Linki Eklendi */}
+      </div>
+      <div>
+        {user ? (
+          <>
+            <span style={{ marginRight: "10px" }}>Hoş geldin, {user.username}!</span>
+            <button onClick={logout} style={{ background: "red", padding: "5px 10px", borderRadius: "5px", color: "white" }}>Çıkış Yap</button>
+          </>
+        ) : (
+          <Link to="/login" style={{ color: "white" }}>Giriş Yap</Link>
+        )}
+      </div>
     </nav>
   );
 };
