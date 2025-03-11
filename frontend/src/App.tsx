@@ -1,11 +1,15 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
-import { AuthProvider, useAuth } from "./context/AuthContext";
+import Chat from "./components/Chat"; // ✅ Yeni eklediğimiz Chat bileşenini dahil edelim
+
+
+
 
 // Korumalı Rota: Kullanıcı giriş yapmamışsa `/login` sayfasına yönlendir
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -34,6 +38,9 @@ function App() {
           
           {/* ❌ Geçersiz bir rota girildiğinde dashboard'a yönlendirme */}
           <Route path="*" element={<Navigate to="/dashboard" />} />
+
+          {/* 📌 Yeni Sohbet Sayfası */}
+          <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>

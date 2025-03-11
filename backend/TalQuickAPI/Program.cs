@@ -3,10 +3,14 @@ using TalQuickAPI.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TalQuickAPI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS'u yapılandır
+// SignalR servisini ekleyelim
+builder.Services.AddSignalR();
+
+// ✅ CORS'u SignalR ile uyumlu hale getirelim
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
@@ -14,7 +18,8 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins("http://localhost:5173") // React uygulamamızın çalıştığı adres
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                  .AllowCredentials(); // ✅ SignalR için gerekli
         });
 });
 
@@ -47,10 +52,13 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowFrontend"); // ✅ CORS’u SignalR için de aktif et!
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// ✅ SignalR Hub'ını ekleyelim
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
