@@ -7,6 +7,8 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Chat from "./components/Chat"; // ✅ Yeni eklediğimiz Chat bileşenini dahil edelim
+import GroupChat from "./pages/GroupChat"; // ✅ Yeni bileşeni import et
+
 
 
 
@@ -41,6 +43,9 @@ function App() {
 
           {/* 📌 Yeni Sohbet Sayfası */}
           <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+
+          {/* 📌 Yeni Sohbet Sayfası */}
+          <Route path="/groupchat" element={<ProtectedRoute><GroupChat /></ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
