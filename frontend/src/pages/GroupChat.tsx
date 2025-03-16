@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getGroups } from "../services/api";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
-import { joinGroup, leaveGroup } from "../services/signalR"; // ✅ SignalR bağlantısını içe aktardık
+import { joinGroup, leaveGroup } from "../services/signalR";
 import hubConnection from "../services/signalR";
 
 const GroupChat = () => {
@@ -15,23 +15,7 @@ const GroupChat = () => {
 
   useEffect(() => {
     fetchGroups();
-    if (!selectedGroup) return; // Eğer grup seçili değilse çalıştırma
-
-    console.log("🎧 Grup mesajları dinleniyor...", selectedGroup);
-
-    const messageHandler = (groupId: string, senderUsername: string, message: string, timestamp: string) => {
-      if (groupId.toString() === selectedGroup.toString()) {
-        console.log("📥 Mesaj alındı:", { groupId, senderUsername, message, timestamp });
-        setMessages((prevMessages) => [...prevMessages, { senderUsername, message, timestamp }]);
-      }
-    };
-
-    hubConnection.on("ReceiveGroupMessage", messageHandler);
-
-    return () => {
-      hubConnection.off("ReceiveGroupMessage", messageHandler);
-    };
-  }, [selectedGroup, messages]); // ✅ Buraya `messages` da eklendi
+  }, []);
 
   // ✅ Mevcut grupları API'den çek
   const fetchGroups = async () => {
@@ -67,6 +51,7 @@ const GroupChat = () => {
       await leaveGroup(selectedGroup); // ✅ Önce önceki gruptan ayrıl
     }
     setSelectedGroup(groupId);
+    setMessages([]); // ✅ Seçili grup değiştiğinde mesajları temizle!
     await joinGroup(groupId); // ✅ Yeni gruba bağlan
   };
 
@@ -82,23 +67,25 @@ const GroupChat = () => {
     }
   };
 
-  // ✅ Gelen mesajları dinleme
+  // ✅ Gelen mesajları dinleme (messages bağımlılığı kaldırıldı!)
   useEffect(() => {
     if (selectedGroup) {
       console.log("🎧 Grup mesajları dinleniyor...", selectedGroup);
 
-      hubConnection.on("ReceiveGroupMessage", (groupId, senderUsername, message, timestamp) => {
-        if (groupId === selectedGroup) {
+      const messageHandler = (groupId: string, senderUsername: string, message: string, timestamp: string) => {
+        if (groupId.toString() === selectedGroup.toString()) {
           console.log("📥 Mesaj alındı:", { groupId, senderUsername, message, timestamp });
           setMessages((prevMessages) => [...prevMessages, { senderUsername, message, timestamp }]);
         }
-      });
+      };
+
+      hubConnection.on("ReceiveGroupMessage", messageHandler);
 
       return () => {
-        hubConnection.off("ReceiveGroupMessage");
+        hubConnection.off("ReceiveGroupMessage", messageHandler);
       };
     }
-  }, [selectedGroup]); // ✅ `selectedGroup` değiştiğinde yeniden çalıştır
+  }, [selectedGroup]); // ✅ `messages` bağımlılığı kaldırıldı
 
   return (
     <div>
